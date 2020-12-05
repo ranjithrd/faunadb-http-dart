@@ -2,14 +2,14 @@ import 'result.dart';
 
 enum CursorType { EMPTY }
 
-class Page {
+class FQLPage {
   final Object before;
   final Object after;
   final List data;
 
-  Page(this.before, this.after, this.data);
+  FQLPage(this.before, this.after, this.data);
 
-  factory Page.fromResource({Object before, Object after, Object data}) {
+  factory FQLPage.fromResource({Object before, Object after, Object data}) {
     var beforeCursor = before;
     if (before is List) {
       beforeCursor = List.from(before).map((element) {
@@ -30,12 +30,12 @@ class Page {
       }).toList(growable: false);
     }
 
-    return Page(beforeCursor, afterCursor, data);
+    return FQLPage(beforeCursor, afterCursor, data);
   }
 
   @override
   String toString() {
-    return 'Page(${{
+    return 'FQLPage(${{
       'before': before,
       'after': after,
       'size': data.length
